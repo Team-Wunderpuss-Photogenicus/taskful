@@ -21,17 +21,19 @@ const ChoreList = ({ data, chores, points, priority, handleSubmit }) => {
     <div className="ChoreList">
       <h2>Chores List</h2>
       {/* {results} */}
+
+      {/* maps out the data and generates a Chore component for each*/}
       {data.map((task, i) => (
         <Chore
-          data={task}
-          chores={task.chores}
-          points={task.points}
-          priority={task.priority}
+          data={task} //{ chores: 'louis', points: 20, priority: 15 }
+          chores={task.chores} //{ chores: 'louis' }
+          points={task.points} //{  points: 20,  }
+          priority={task.priority} // {} priority: 15 }
           key={i}
         />
       ))}
       <div>
-        <h1> Div separator</h1>
+        <h2> Add new task..</h2>
       </div>
       <form onSubmit={handleSubmit}>
         <input
@@ -41,13 +43,13 @@ const ChoreList = ({ data, chores, points, priority, handleSubmit }) => {
           minLength="3"
         ></input>
         <input
-          id="itemInput"
+          id="numInput"
           type="number"
           placeholder="Enter points"
           minLength="3"
         ></input>
         <input
-          id="itemInput"
+          id="numInput2"
           type="number"
           placeholder="Priority"
           minLength="3"

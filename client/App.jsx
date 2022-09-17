@@ -2,9 +2,14 @@ import React, { Component, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Leaderboard from './components/Leaderboard';
 import ChoreList from './components/ChoreList';
+import SignUp from './components/SignUp';
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([
+    { chores: 'sweep', points: 20, priority: 15 },
+    { chores: 'brian', points: 20, priority: 15 },
+    { chores: 'louis', points: 20, priority: 15 },
+  ]);
   const [chores, setChores] = useState('');
   const [points, setPoints] = useState(0);
   const [priority, setPriority] = useState(0);
@@ -28,8 +33,9 @@ function App() {
       ...data,
       { chores: newChore, points: newPoints, priority: newPriority },
     ]);
-
     document.getElementById('itemInput').value = null;
+    document.getElementById('numInput').value = null;
+    document.getElementById('numInput2').value = null;
   };
   console.log(chores, points, priority);
   console.log(data);
@@ -45,6 +51,10 @@ function App() {
         points={points}
         priority={priority}
       />
+      <Routes>
+        <Route path="/signup" element={<SignUp />} />
+        {/* <Rouite path="/register" element={<Register/>} /> */}
+      </Routes>
     </>
   );
 }
