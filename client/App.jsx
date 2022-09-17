@@ -5,7 +5,7 @@ import Tasks from "./components/Tasks";
 
 function App() {
     return (
-        <MainComponent />
+        <Tasks />
     );
 }
 
