@@ -45,6 +45,7 @@
     "react-hot-loader": "^4.13.0",
     "react-router": "^6.4.0",
     "react-router-dom": "^6.4.0",
-    "sass-loader": "^13.0.2"
+    "sass-loader": "^13.0.2",
+    "sequelize": "^6.23.0"
   }
 }

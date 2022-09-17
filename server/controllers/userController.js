@@ -1,30 +1,31 @@
-const models = require('../models/choresModels');
+const models = require('../models/sequelize');
 
 const userController = {};
 
-//this controller adds the input a user to the database
+//this controller adds the input user to the database
 userController.addUser = (req, res, next) => {
-    let currentDate = new Date();
-    let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
-    let cDay = currentDate.getDate();
-    let cMonth = currentDate.getMonth() + 1;
-    let cYear = currentDate.getFullYear();
-    const current = cDay + "/" + cMonth + "/" + cYear + ' ' + time;
-    models.History.create({
+    //sql query string declared to add user to database
+
+    models.Person.create({
 
     }, (err) => {
+        //return error obj
         if (err) return next({
             log: 'Middleware error. userController addUser',
             message: { err: 'An err occurred' },
         });
+        //invoke next middleware
         return next();
     });
 }//end of adduser
 
 userController.deleteUser = (req, res, next) => {
-    const date = req.body.date;
+    //get user id from req
+
+    //delete user using sql query finding id
     models.History.findOneAndDelete({date}, (err, set) => {
         if (err) {
+            //return err
             return next({
                 log: 'Middleware error. choresController deletechore',
                 status: 403,

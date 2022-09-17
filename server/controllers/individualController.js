@@ -1,4 +1,4 @@
-const models = require('../models/choresModels');
+const models = require('../models/sequelize');
 
 const individualController = {};
 

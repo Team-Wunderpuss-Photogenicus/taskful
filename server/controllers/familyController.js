@@ -1,27 +1,27 @@
-const models = require('../models/choresModels');
+const models = require('../models/sequelize');
 
-const choresController = {};
+const familyController = {};
 
-//this controller gets all the chores history
-choresController.getChore = (req, res, next) => {
-    //sql query to find all chores
-    models.History.find({}, (err, histories) => {
+//this controller gets all the family history
+familyController.getChore = (req, res, next) => {
+    //sql query to find all family
+    models.History.find({}, (err, chores) => {
         if (err) {
             //return err object 
             return next({
-                log: 'Middleware error. choresController getChores',
+                log: 'Middleware error. familyController getchores',
                 message: { err: 'An err occurred' },
             });
         }
-        //save all returned chores to locals
-        res.locals.histories = histories;
+        //save all returned family to locals
+        res.locals.chores = chores;
         //invoke next middleware
         return next();
     });
 };
 
 //this controller adds the input chore data to the database
-choresController.addChore = (req, res, next) => {
+familyController.addChore = (req, res, next) => {
     //get the current date and time and assign to current
     let currentDate = new Date();
     let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
@@ -29,13 +29,15 @@ choresController.addChore = (req, res, next) => {
     let cMonth = currentDate.getMonth() + 1;
     let cYear = currentDate.getFullYear();
     const current = cDay + "/" + cMonth + "/" + cYear + ' ' + time;
-    //sql query to add chores to db
+    //sql query to add chore to family list in db
     models.History.create({
+        //add chore details 
+        //link family id to chore
 
     }, (err) => {
         if (err) return next({
             //return err object
-            log: 'Middleware error. choresController addChores',
+            log: 'Middleware error. familyController addchore',
             message: { err: 'An err occurred' },
         });
         //invoke next middleware
@@ -44,19 +46,19 @@ choresController.addChore = (req, res, next) => {
 }//end of addchore
 
 //This controller deletes a chore from the db
-choresController.deleteChore = (req, res, next) => {
+familyController.deleteChore = (req, res, next) => {
     //find chore based on id
     models.History.findOneAndDelete({date}, (err, set) => {
         if (err) {
             return next({
-                log: 'Middleware error. choresController deletechore',
+                log: 'Middleware error. familyController deletechore',
                 status: 403,
                 message: { err: 'An err occurred' },
             });
         };
 
         if (!set) return next ({
-          log: 'Middleware error. chorescontroller.deletechore',
+          log: 'Middleware error. familycontroller.deletechore',
           status: 404,
           message: { err: 'Set not found' },
         });
