@@ -1,12 +1,16 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Tasks from "./components/Tasks";
+import Leaderboard from './components/Leaderboard';
+import ChoreList from './components/ChoreList';
 
 function App() {
-    return (
-        <Tasks />
-    );
+  return (
+    <>
+      <Leaderboard />
+      <ChoreList />
+    </>
+  );
 }
 
 export default App;
