@@ -1,13 +1,18 @@
 const path = require('path');
 const express = require('express');
 // const cookieParser = require('cookie-parser');
-// const api = require('./routes/api');
-
+const familyRouter = require('./routers/family');
+const individualRouter = require('./routers/individual');
 
 const app = express();
 const PORT = process.env.EXPRESS_PORT || 3000;
 
+/**
+ * handle parsing request body
+ */
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // app.use(cookieParser());
 
 //log all requests during dev
@@ -26,6 +31,23 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/', 'index.html'));
 })
+
+//redirects to family chore page after successful login
+app.post('/login', userController, (req, res) => {
+    res.status(200).redirect('http://localhost:8080/family')
+});
+
+//redirects to login page after successful signup
+app.post('/signup', userController, (req, res) => {
+    res.status.redirect('http://localhost:8080')
+});
+
+//handle family calls
+app.use('/family', familyRouter)
+
+//handle user calls
+app.use('/user', individualRouter)
+
 
 //default 404 handeler
 app.use((req, res) => {
