@@ -4,34 +4,41 @@ import Leaderboard from './components/Leaderboard';
 import ChoreList from './components/ChoreList';
 
 function App() {
-  const [data, setData] = useState([{chores:'Sweeping', points: 1, priority: 'medium'}]);
-  const [chores, setChores] = useState([]);
-  const [points, setPoints] = useState([]);
-  const [priority, setPriority] = useState([]);
-
-//   useEffect(
-//     fetch('http://localhost:3000/')
-//       .then((data) => data.json())
-//       .then((response) => setData(response))
-//   );
+  const [data, setData] = useState([]);
+  const [chores, setChores] = useState('');
+  const [points, setPoints] = useState(0);
+  const [priority, setPriority] = useState(0);
+  //   const fakeData = {
+  //         chores: setChores(...chores, value),
+  //         points: setPoints(...points, points),
+  //         prioirty: setPriority(...priority, value)
+  // }
+  //   useEffect(
+  //     fetch('http://localhost:3000/')
+  //       .then((data) => data.json())
+  //       .then((response) => setData(response))
+  //   );
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let newChore = e.target[0].value;
     let newPoints = e.target[1].value;
     let newPriority = e.target[2].value;
-    setChores([...chores, newChore]);
-    setPoints([...points, newPoints]);
-    setPriority([...priority, newPriority]);
+    setData([
+      ...data,
+      { chores: newChore, points: newPoints, priority: newPriority },
+    ]);
 
     document.getElementById('itemInput').value = null;
   };
   console.log(chores, points, priority);
+  console.log(data);
 
   return (
     <>
       <Leaderboard />
       <ChoreList
+        data={data}
         chores={chores}
         setChores={setChores}
         handleSubmit={handleSubmit}

@@ -4,26 +4,32 @@ import Chore from './Chore';
 //add fetch call functions into deconstructed object
 import {} from '../services/user';
 
-const ChoreList = ({ chores, points, priority, handleSubmit }) => {
+const ChoreList = ({ data, chores, points, priority, handleSubmit }) => {
   const results = [];
-  for (let i = 0; i < chores.length; i++) {
-    results.push(
-      <Chore
-        chores={chores[i]}
-        points={points[i]}
-        priority={priority[i]}
-        key={i}
-      />
-    );
-  }
+  // for (let i = 0; i < chores.length; i++) {
+  //   results.push(
+  //     <Chore
+  //       chores={chores[i]}
+  //       points={points[i]}
+  //       priority={priority[i]}
+  //       key={i}
+  //     />
+  //   );
+  // }
 
   return (
     <div className="ChoreList">
       <h2>Chores List</h2>
-      {results}
-      {/* {chores.map((task, i) => (
-        <Chore chores={task} points={points} priority={priority} key={i} />
-      ))} */}
+      {/* {results} */}
+      {data.map((task, i) => (
+        <Chore
+          data={task}
+          chores={task.chores}
+          points={task.points}
+          priority={task.priority}
+          key={i}
+        />
+      ))}
       <div>
         <h1> Div separator</h1>
       </div>
