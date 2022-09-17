@@ -4,17 +4,30 @@ import Leaderboard from './components/Leaderboard';
 import ChoreList from './components/ChoreList';
 
 function App() {
-  const [data, setData] = useState();
+  const [data, setData] = useState([{chores:'Sweeping', points: 1, priority: 'medium'}]);
   const [chores, setChores] = useState([]);
-  //chores ['Clean windows', 'nothing']
+  const [points, setPoints] = useState([]);
+  const [priority, setPriority] = useState([]);
+
+//   useEffect(
+//     fetch('http://localhost:3000/')
+//       .then((data) => data.json())
+//       .then((response) => setData(response))
+//   );
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target[0].value);
-    setChores([...chores, e.target[0].value]);
-    document.getElementById('itemInput').value = '';
+    let newChore = e.target[0].value;
+    let newPoints = e.target[1].value;
+    let newPriority = e.target[2].value;
+    setChores([...chores, newChore]);
+    setPoints([...points, newPoints]);
+    setPriority([...priority, newPriority]);
+
+    document.getElementById('itemInput').value = null;
   };
-  console.log(chores);
+  console.log(chores, points, priority);
+
   return (
     <>
       <Leaderboard />
@@ -22,6 +35,8 @@ function App() {
         chores={chores}
         setChores={setChores}
         handleSubmit={handleSubmit}
+        points={points}
+        priority={priority}
       />
     </>
   );
