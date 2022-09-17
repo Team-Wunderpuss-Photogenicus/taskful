@@ -5,9 +5,11 @@ import {} from '../services/user';
 
 const Chore = ({ chores, points, priority }) => {
   return (
-    <h2 className="Chore">
-      New Chore: {chores} Points: {points} Priority: {priority}
-    </h2>
+    <>
+      <div className="points-display">Points: {points}</div>
+      <div className="points-display">Priority: {priority}</div>
+      <h2 className="Chore">Chore: {chores}</h2>
+    </>
   );
 };
 

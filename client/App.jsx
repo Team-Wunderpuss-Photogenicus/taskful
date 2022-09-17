@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SignUp from './components/SignUp';
+import Login from './components/Login';
 import Register from './components/Register';
 import ChoreContainer from './components/ChoreContainer';
 
@@ -9,7 +9,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<ChoreContainer />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/Login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </>

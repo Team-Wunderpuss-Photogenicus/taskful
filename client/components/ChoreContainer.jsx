@@ -12,16 +12,12 @@ function ChoreContainer () {
   const [chores, setChores] = useState('');
   const [points, setPoints] = useState(0);
   const [priority, setPriority] = useState(0);
-  //   const fakeData = {
-  //         chores: setChores(...chores, value),
-  //         points: setPoints(...points, points),
-  //         prioirty: setPriority(...priority, value)
-  // }
-  //   useEffect(
-  //     fetch('http://localhost:3000/')
-  //       .then((data) => data.json())
-  //       .then((response) => setData(response))
-  //   );
+
+    // useEffect(
+    //   fetch('/family')
+    //     .then((data) => data.json())
+    //     .then((response) => setData(response))
+    // );
 
   const handleSubmit = (e) => {
     e.preventDefault();

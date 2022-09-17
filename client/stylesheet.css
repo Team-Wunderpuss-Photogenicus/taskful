@@ -1,13 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-body{
-  font-family: 'Poppins', sans-serif;
-  background-color: white;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+body {
+  font-family: 'Poppins', sans-serif;
+    background-color: #41B3A3;
+    color: #fff;
+    line-height: 1.6;
+}
+
+header {
+    height: 70px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+      margin-left: 50px;
+}
+
+button {
+      border: 0;
+      border-radius: 8px;
+      color: rgb(215, 61, 61);
+      width: 100px;
+      height: 30px;
+      cursor: pointer;
+}
+
+h1 {
+  color:#E27D60
+}
+
+h2 {
+  color: #E8A87C
+
+}
 .leaderboard {
-  background-color: blue;
-  color: white;
+  display: flex;
+    height: 70px;
+    width: 100%;
+    color: lavender;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 .ChoreList {
@@ -15,14 +55,25 @@ body{
   background-color: rgb(58, 58, 188);
   flex-direction: column;
   border-radius: 15px;
+  padding: 20px;
 }
 
 .Chore {
-  background-color: lavender;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  padding: 20px;
-  border-radius: 15px;
-  justify-content: space-around;
+  background-color: rgba(133, 220, 186);
+    color: #C38D9E;
+    border-radius: 15px;
+    padding: 40px 50px;
+    margin: 20px 0;
+    position: relative;
+}
+
+.points-display {
+      top: -10px;
+      left: -10px;
+      color: #fff;
+}
+
+input {
+  border-radius: 10px;
+  padding: 5px;
 }

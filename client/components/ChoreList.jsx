@@ -19,7 +19,7 @@ const ChoreList = ({ data, chores, points, priority, handleSubmit }) => {
 
   return (
     <div className="ChoreList">
-      <h2>Chores List</h2>
+      <h2>Task List</h2>
       {/* {results} */}
 
       {/* maps out the data and generates a Chore component for each*/}
@@ -41,18 +41,21 @@ const ChoreList = ({ data, chores, points, priority, handleSubmit }) => {
           type="text"
           placeholder="Input New Item"
           minLength="3"
+          required
         ></input>
         <input
           id="numInput"
           type="number"
           placeholder="Enter points"
           minLength="3"
+          required
         ></input>
         <input
           id="numInput2"
           type="number"
           placeholder="Priority"
           minLength="3"
+          required
         ></input>
         <button type="Submit">Add item</button>
       </form>
