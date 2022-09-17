@@ -23,10 +23,10 @@ const ChoreList = ({ chores, setChores, handleSubmit }) => {
       </div>
       <form onSubmit={handleSubmit}>
         <input
+          id='itemInput'
           type="text"
           placeholder="Input New Item"
-          value={chores}
-          onChange={(e) => setChores(e.target.value)}
+          // onChange={(e) => setChores(e.target.value)}
           minLength="3"
         ></input>
         <button type="Submit">Add item</button>
