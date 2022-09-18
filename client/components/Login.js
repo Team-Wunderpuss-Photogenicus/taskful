@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Login() {
   //  useEffect(
@@ -19,7 +20,9 @@ function Login() {
           <label>Password</label>
           <input type="password" id="password" name="password" required />
         </div>
-        <input className="Loginbutton" type="submit" value="Login"></input>
+        <Link to="/tasks">
+          <input className="Loginbutton" type="submit" value="Login"></input>
+        </Link>
       </form>
     </div>
   );

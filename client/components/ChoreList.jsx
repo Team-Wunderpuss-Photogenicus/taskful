@@ -4,7 +4,14 @@ import Chore from './Chore';
 //add fetch call functions into deconstructed object
 import {} from '../services/user';
 
-const ChoreList = ({ data, chores, points, priority, handleSubmit }) => {
+const ChoreList = ({
+  data,
+  chores,
+  points,
+  priority,
+  handleSubmit,
+  handleDelete,
+}) => {
   const results = [];
   // for (let i = 0; i < chores.length; i++) {
   //   results.push(
@@ -23,15 +30,6 @@ const ChoreList = ({ data, chores, points, priority, handleSubmit }) => {
       {/* {results} */}
 
       {/* maps out the data and generates a Chore component for each*/}
-      {data.map((task, i) => (
-        <Chore
-          data={task} //{ chores: 'louis', points: 20, priority: 15 }
-          chores={task.chores} //{ chores: 'louis' }
-          points={task.points} //{  points: 20,  }
-          priority={task.priority} // {} priority: 15 }
-          key={i}
-        />
-      ))}
       <div>
         <h2> Add new task..</h2>
       </div>
@@ -59,6 +57,16 @@ const ChoreList = ({ data, chores, points, priority, handleSubmit }) => {
         ></input>
         <button type="Submit">Add item</button>
       </form>
+      {data.map((task, i) => (
+        <Chore
+          data={task} //{ chores: 'louis', points: 20, priority: 15 }
+          chores={task.chores} //{ chores: 'louis' }
+          points={task.points} //{  points: 20,  }
+          priority={task.priority} // {} priority: 15 }
+          key={i}
+          handleDelete={handleDelete}
+        />
+      ))}
     </div>
   );
 };
