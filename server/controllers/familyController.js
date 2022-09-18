@@ -1,4 +1,4 @@
-const models = require('../models/sequelize');
+const models = require('../sequelize/sequelize');
 
 const familyController = {};
 
