@@ -1,4 +1,4 @@
-const models = require('../sequelize/sequelize');
+const models = require('../sequelize/models/index');
 
 const individualController = {};
 
@@ -6,19 +6,18 @@ const individualController = {};
 individualController.getChores = (req, res, next) => {
     //declare id for individual from params 
 
-    //sql querystring to find all chores based on individual id
-
-    //actual sql euery
-    models.History.find({}, (err, histories) => {
-        if (err) {
-            //return err object 
-            return next({
-                log: 'Middleware error. individualController getchores',
-                message: { err: 'An err occurred' },
-            });
-        }
+    //actual sql qeuery
+    models.Person.findOne({ where: { name: 'sam' } })
+        .then((person) => {
+        // if (err) {
+        //     //return err object 
+        //     return next({
+        //         log: 'Middleware error. individualController getchores',
+        //         message: { err: 'An err occurred' },
+        //     });
+        // }
         //store individuals chores into local to persist
-        res.locals.histories = histories;
+        res.locals.person = person.dataValues;
         //invoke next middleware
         return next();
     });

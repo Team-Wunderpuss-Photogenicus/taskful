@@ -15,6 +15,7 @@ async function initial() {
 
 initial();
 
+//person model for people table in starwars database
 const person = sequelize.define('person', {
   _id: {
     type: DataTypes.NUMBER,
@@ -59,11 +60,9 @@ const person = sequelize.define('person', {
   }
 )
 
-console.log(person === sequelize.models.person);
+const Person = sequelize.models.person;
 
-  const users = person.create({_id: 999, name: 'sam'})
-  .then (() => console.log('success'))
-// console.log(users.every(user => user instanceof Person)); // true
-// console.log("All users:", JSON.stringify(users, null, 2));
+// Person.findAll({})
+// .then((data)=> console.log(data))
 
-
+module.exports = { Person };

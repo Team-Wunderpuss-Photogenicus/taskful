@@ -68,4 +68,4 @@ familyController.deleteChore = (req, res, next) => {
     });
 };
 
-module.exports = choresController;
+module.exports = familyController;

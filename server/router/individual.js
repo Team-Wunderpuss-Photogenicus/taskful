@@ -3,9 +3,9 @@ const individualController = require('../controllers/individualController');
 
 const router = express.Router();
 
-router.get('/:id', individualController.getChores, (req, res) => {
+router.get('/', individualController.getChores, (req, res) => {
     // console.log('histories', res.locals.histories)
-    res.status(200).json(res.locals.histories)
+    res.status(200).send(res.locals.person)
 });
 
 router.post('/:id', individualController.addChore, (req, res) => {
