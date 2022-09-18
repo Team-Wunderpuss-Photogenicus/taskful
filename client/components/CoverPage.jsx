@@ -7,7 +7,6 @@ console.log(taskful);
 function CoverPage() {
   return (
     <div className="CoverPage">
-      <h1> Cover Page</h1>
       <img src={taskful} />
       <Link to="/login">
         <button className="getStarted">Get Started!</button>

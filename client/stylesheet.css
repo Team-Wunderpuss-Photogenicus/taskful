@@ -10,7 +10,7 @@ body {
   font-family: 'Poppins', sans-serif;
     background-color: #b2e4ff;
     color: #fff;
-    line-height: 1.6;
+    line-height: 1.6;    
 }
 
 header {
@@ -56,6 +56,9 @@ h2 {
   flex-direction: column;
   border-radius: 15px;
   padding: 20px;
+  height: 750px;
+  width: 750px;
+  overflow: scroll;
 }
 
 .Chore {
@@ -81,8 +84,14 @@ h2 {
 }
 .getStarted:hover {
   color: #13315C;
-  padding-right: 25px;
+  padding-right: 20px;
   transition: 0.5s;
+}
+
+.delete {
+  /* margin-left: 590px; */
+  top: 10px;
+  margin-right: 20px;
 }
 
 input {
