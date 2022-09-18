@@ -33,7 +33,7 @@ button {
 }
 
 h1 {
-  color:#BCCDDC
+  color:rgba(0, 0, 0, 0.75)
 }
 
 h2 {
@@ -71,6 +71,16 @@ h2 {
       top: -10px;
       left: -10px;
       color: #fff;
+}
+
+.CoverPage {
+  display: flex;
+  flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+.getStarted {
+  color: #13315C;
 }
 
 input {
