@@ -79,8 +79,10 @@ h2 {
  justify-content: center;
  align-items: center;
 }
-.getStarted {
+.getStarted:hover {
   color: #13315C;
+  padding-right: 25px;
+  transition: 0.5s;
 }
 
 input {
