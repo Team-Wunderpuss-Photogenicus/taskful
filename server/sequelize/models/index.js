@@ -23,7 +23,7 @@ initial();
 //test user model for user table in taskful database
 const user = sequelize.define('user', {
   googleid: {
-    type: DataTypes.BIGINT,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   familyid: {

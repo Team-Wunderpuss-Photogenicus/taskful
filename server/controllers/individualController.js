@@ -11,8 +11,12 @@ individualController.getChores = async(req, res, next) => {
         const dbRes = await models.Chore.findAll({ where: { userid: userId } })
             //async grabbing chores response from db
             console.log(dbRes[0].dataValues);
+            const result = [];
+            dbRes.forEach((chore) => {
+                result.push(chore.dataValues);
+            })
                 //store individuals chores into local to persist
-                res.locals.chores = dbRes[0].dataValues;
+                res.locals.chores = result;
                 //invoke next middleware
     }
     //catch statement for error response
@@ -39,24 +43,15 @@ individualController.addChore = async (req, res, next) => {
     //sqlize method to create an entry in personal chores list of db\
     try {
         const { userId } = req.cookies;
-        const { choreName, points, priority } = req.body;
-        const dbRes = await models.Chore.create({
-            //find the individuals chores table based on req.body.id passed in 
-            // id: 12345,
-            //add an association for individualid and choreid from req.body.choreid
-            chorename: choreName,
-            
-            points: points,
-            
-            priority: priority,
-            
-            userid: userId,
-            
-            familyid: 1,
-            
+        // const { choreName, points, priority } = req.body;
+        const { id } = req.body;
+        console.log('id', id);
+        const dbRes = await models.Chore.findOne({
+            where: { id: id }
         })//end of create sqlize
-   
-        console.log(dbRes);
+        console.log('dbRes', dbRes);
+        await dbRes.update({ userid : userId })
+        res.locals.chore = dbRes.dataValues;
         return next();
     }
     catch (err) {
@@ -72,11 +67,11 @@ individualController.addChore = async (req, res, next) => {
 
 //This controller deletes a chore from the db
 individualController.deleteChore = (req, res, next) => {
-    const { id } = req.params;
+    const { id } = req.body;
     //sqlize query deleting doc by user id and chore id
     models.Chore.destroy({
         where: {
-            _id: id,
+            id: id,
         }//end of conditional query guideliens
     })//end of destroy method
         //handle destroy response from sequelize

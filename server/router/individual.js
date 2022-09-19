@@ -8,12 +8,12 @@ router.get('/', individualController.getChores, (req, res) => {
     res.status(200).send(res.locals.chores)
 });
 
-router.post('/', individualController.addChore, (req, res) => {
-    res.status(200).json([{"success": "success"}])
+router.patch('/:id', individualController.addChore, (req, res) => {
+    res.status(200).json(res.locals.chore)
 });
 
 router.delete('/:id', individualController.deleteChore, (req, res) => {
-    res.status(200).json([{"success": "success"}])
+    res.status(200).json(res.locals.chore)
 });
 
 module.exports = router;

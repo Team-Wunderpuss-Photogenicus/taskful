@@ -3,7 +3,7 @@ const { User } = require('../sequelize/models/index');
 const userController = {};
 
 userController.login = async (req, res, next) => {
-    try{
+    try {
         const [user, created] = await User.findOrCreate({
             where: { googleid: req.body.userId },
             defaults: { googleid: req.body.userId, familyid: 1}

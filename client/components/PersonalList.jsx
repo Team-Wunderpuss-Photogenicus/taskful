@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PersonalChore from './PersonalChore';
 
@@ -11,51 +11,66 @@ function PersonalList() {
   const [chores, setChores] = useState('');
   const [points, setPoints] = useState(0);
   const [priority, setPriority] = useState(0);
+  const [refresh, setRefresh] = useState(true);
 
-  // useEffect(() => {
-  //   fetch('/family')
+  useEffect(() => {
+    fetch('/individual')
+      .then(res => res.json())
+      .then((respdata) => {
+        console.log('data', respdata);
+        setData(respdata)
+      })
+      .catch((err) => {
+      })
+  }, [refresh]);
+
+  // const handleSubmit = (e) => {
+  //   let newChore = e.target[0].value;
+  //   let newPoints = e.target[1].value;
+  //   let newPriority = e.target[2].value;
+  //   e.preventDefault();
+  //   fetch(`/individual`, {
+  //     method: 'PATCH',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       id: id,
+  //       choreName: newChore
+  //     }),
+  //   })
   //     .then((data) => data.json())
-  //     .then((response) => setData(response));
-  // }, []);
+  //     .catch((err) => console.log(err));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch(`/api`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ _id: id }),
-    })
-      .then((data) => data.json())
-      .catch((err) => console.log(err));
-
-    let newChore = e.target[0].value;
-    let newPoints = e.target[1].value;
-    let newPriority = e.target[2].value;
-    setData([
-      ...data,
-      { chores: newChore, points: newPoints, priority: newPriority },
-    ]);
-    document.getElementById('itemInput').value = null;
-    document.getElementById('numInput').value = null;
-    document.getElementById('numInput2').value = null;
-  };
+  //   setData([
+  //     ...data,
+  //     { chores: newChore, points: newPoints, priority: newPriority },
+  //   ]);
+  //   document.getElementById('itemInput').value = null;
+  //   document.getElementById('numInput').value = null;
+  //   document.getElementById('numInput2').value = null;
+  // };
   // console.log(chores, points, priority);
   // console.log(data);
 
-  const handleDelete = (id) => {
-    e.preventDefault();
-    fetch(`/api?_id=${id}`, {
+  const handleDelete = (id, e) => {
+    // e.preventDefault();
+    fetch(`/individual/1`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ _id: id }),
+      body: JSON.stringify({
+        id: id,
+      }),
     })
-      .then((data) => data.json())
-      .catch((err) => console.log(err));
-    setData(data.filter((item) => item._id !== id));
+      .then((data) => {
+        const newRefresh = !refresh
+        setRefresh(newRefresh)
+        return data.json()
+      })
+        .catch((err) => console.log(err));
+        // setData(data.filter((item) => item._id !== id));
   };
 
   return (
@@ -64,7 +79,8 @@ function PersonalList() {
       {data.map((task, i) => (
         <PersonalChore
           data={task} //{ chores: 'louis', points: 20, priority: 15 }
-          chores={task.chores} //{ chores: 'louis' }
+          id = {task.id}
+          chores={task.chorename} //{ chores: 'louis' }
           points={task.points} //{  points: 20,  }
           priority={task.priority} // {} priority: 15 }
           key={i}

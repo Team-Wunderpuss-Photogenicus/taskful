@@ -4,11 +4,11 @@ import { FaTimes } from 'react-icons/fa';
 //add fetch call functions into deconstructed object
 import {} from '../services/user';
 
-const Chore = ({ chores, points, priority, handleDelete, setData }) => {
+const Chore = ({ id, chores, points, priority, handleDelete, setData }) => {
   const handlePersonal = (id) => {
     e.preventDefault();
-    fetch(`/api`, {
-      method: 'POST',
+    fetch(`/individual`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -32,10 +32,11 @@ const Chore = ({ chores, points, priority, handleDelete, setData }) => {
     <>
       <div className="points-display">Points: {points}</div>
       <div className="points-display">Priority: {priority}</div>
-      <h2 className="Chore">Chore: {chores}</h2>
-      <button className="delete" onClick={handleDelete}>
+      <h2 className="Chore">Chore: {chores}
+      <button className="delete" value={chores} onClick={()=>handleDelete(id)}>
         <FaTimes color="red" />
       </button>
+      </h2>
     </>
   );
 };

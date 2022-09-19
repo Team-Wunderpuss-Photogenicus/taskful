@@ -4,14 +4,19 @@ const familyController = {};
 
 //this controller gets all the individual history
 familyController.getChore = (req, res, next) => {
-
+    const { id } = req.params;
+    console.log(id);
+    const choreList = [];
     //actual sequelize query to get all chores from personal chores list in db based on user id passed in
-    models.Chore.findAll({where: {_id: req.query.id}})
-        
+    models.Chore.findAll({ where: { familyid: id , userid: null} })
         //async grabbing chores response from db
         .then((chore) => {
+            console.log(chore);
+            chore.forEach((chore_ => {
+                choreList.push(chore_.dataValues);
+            }))
             //store individuals chores into local to persist
-            res.locals.chore = chore.dataValues;
+            res.locals.chore = choreList;
             //invoke next middleware
             return next();
         })//end of then chain
@@ -42,20 +47,21 @@ familyController.addChore = (req, res, next) => {
          //find the individuals chores table based on req.body.id passed in 
         // choresid: 12345,
         //add an association for individualid and choreid from req.body.choreid
-        chorename: 'laundry',
+        chorename: req.body.chore,
 
-        points: 12,
+        points: req.body.points,
 
-        priority: 2,
+        priority: req.body.priority,
 
-        userid: 123456789,
+        userid: null,
 
-        familyid: 1234567910,
+        familyid: 1,
 
     })//end of create sqlize
         
         //handle success response after create method
         .then((response) => {
+            res.locals.chore = response.dataValues;
             return next();
         })//end of then dealing with response
 
