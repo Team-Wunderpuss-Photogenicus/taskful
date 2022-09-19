@@ -6,7 +6,7 @@ const individualController = {};
 individualController.getChores = (req, res, next) => {
 
     //actual sequelize query to get all chores from personal chores list in db based on user id passed in
-    models.Chores.findAll({where: {_id: req.query.id}})
+    models.Chore.findAll({where: {_id: req.query.id}})
         
         //async grabbing chores response from db
         .then((chores) => {
@@ -37,12 +37,12 @@ individualController.addChore = (req, res, next) => {
     // const current = cDay + "/" + cMonth + "/" + cYear + ' ' + time;
 
     //sqlize method to create an entry in personal chores list of db
-    models.Chores.create({
+    models.Chore.create({
 
         //find the individuals chores table based on req.body.id passed in 
-        _id: req.body.id,
+        choresid: req.body.id,
         //add an association for individualid and choreid from req.body.choreid
-        chore: req.body.chore,
+        chorename: req.body.name,
 
     })//end of create sqlize
         
@@ -65,7 +65,7 @@ individualController.addChore = (req, res, next) => {
 individualController.deleteChore = (req, res, next) => {
 
     //sqlize query deleting doc by user id and chore id
-    models.Chores.destroy({
+    models.Chore.destroy({
 
         where: {
             _id: req.body.id,
