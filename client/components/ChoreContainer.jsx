@@ -21,15 +21,15 @@ function ChoreContainer() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`/api`, {
-      method: 'POST',
-      headers: {
-        'Content-Type' : 'application/json'
-      },
-      body: JSON.stringify({_id:id}),
-    })
-      .then((data) => data.json())
-      .catch((err) => console.log(err))
+    // fetch(`/api`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type' : 'application/json'
+    //   },
+    //   body: JSON.stringify({_id:id}),
+    // })
+    //   .then((data) => data.json())
+    //   .catch((err) => console.log(err))
       
     let newChore = e.target[0].value;
     let newPoints = e.target[1].value;

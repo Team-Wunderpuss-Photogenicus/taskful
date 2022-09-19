@@ -14,13 +14,12 @@ body {
 }
 
 header {
-    height: 70px;
+      height: 70px;
       width: 100%;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       margin-bottom: 30px;
-      margin-left: 50px;
 }
 
 button {
@@ -40,7 +39,7 @@ h2 {
   color: #3477D5
 
 }
-.leaderboard {
+/* .leaderboard {
   display: flex;
     height: 70px;
     width: 100%;
@@ -48,7 +47,7 @@ h2 {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-}
+} */
 
 .ChoreList {
   display: flex;
@@ -56,8 +55,6 @@ h2 {
   flex-direction: column;
   border-radius: 15px;
   padding: 20px;
-  height: 750px;
-  width: 750px;
   overflow: scroll;
 }
 
@@ -67,7 +64,10 @@ h2 {
     border-radius: 15px;
     padding: 40px 50px;
     margin: 20px 0;
+    width: 500px;
     position: relative;
+    display: flex;
+    justify-content: space-between;
 }
 
 .points-display {
@@ -90,11 +90,38 @@ h2 {
 
 .delete {
   /* margin-left: 590px; */
-  top: 10px;
-  margin-right: 20px;
+  position: relative;
+    top: 5px;
+    right: 0px;
+    cursor: pointer;
+    background: none;
+    border: none;
 }
+
+/* .update {
+  right: 0px;
+  position: relative;
+
+} */
 
 input {
   border-radius: 10px;
   padding: 5px;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 1em;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+@media (min-width: 750px) {
+  body {
+    height: 750px;
+    width: 750px;
+  }
 }
