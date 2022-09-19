@@ -7,18 +7,14 @@ individualController.getChores = async(req, res, next) => {
 
     //actual sequelize query to get all chores from personal chores list in db based on user id passed in
     try {
-
-        dbRes = await models.Chore.findAll({ where: { _id: req.query.id } })
-        
+        const { userId } = req.cookies;
+        const dbRes = await models.Chore.findAll({ where: { userid: userId } })
             //async grabbing chores response from db
-            .then((chores) => {
+            console.log(dbRes[0].dataValues);
                 //store individuals chores into local to persist
-                res.locals.chores = chores.dataValues;
+                res.locals.chores = dbRes[0].dataValues;
                 //invoke next middleware
-                return next();
-            })//end of then chain
     }
-
     //catch statement for error response
     catch (err) {
         ((err) => {
@@ -29,9 +25,10 @@ individualController.getChores = async(req, res, next) => {
             });//end of error obj
         })//end of catch statement
     }
+    return next();
 };//end of getchores
 
-//this controller adds the input chore data to the chores list database
+//this should update a chore to userId
 individualController.addChore = async (req, res, next) => {
     // let currentDate = new Date();
     // let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
@@ -41,21 +38,21 @@ individualController.addChore = async (req, res, next) => {
     // const current = cDay + "/" + cMonth + "/" + cYear + ' ' + time;
     //sqlize method to create an entry in personal chores list of db\
     try {
-        
+        const { userId } = req.cookies;
+        const { choreName, points, priority } = req.body;
         const dbRes = await models.Chore.create({
-            
             //find the individuals chores table based on req.body.id passed in 
             // id: 12345,
             //add an association for individualid and choreid from req.body.choreid
-            chorename: 'laundry',
+            chorename: choreName,
             
-            points: 12,
+            points: points,
             
-            priority: 2,
+            priority: priority,
             
-            userid: 123456789,
+            userid: userId,
             
-            familyid: 1234567910,
+            familyid: 1,
             
         })//end of create sqlize
    
@@ -75,26 +72,20 @@ individualController.addChore = async (req, res, next) => {
 
 //This controller deletes a chore from the db
 individualController.deleteChore = (req, res, next) => {
-
+    const { id } = req.params;
     //sqlize query deleting doc by user id and chore id
     models.Chore.destroy({
-
         where: {
-            _id: req.body.id,
-            chore: req.body.chore,
+            _id: id,
         }//end of conditional query guideliens
-
     })//end of destroy method
-        
         //handle destroy response from sequelize
         .then((err, chore) => {
-            
             //save deleted chore in case needed later
             res.locals.chore = chore;
             //invoke next middleware
             return next();
         })//end of then chain
-
         //handle errors from destroy query
         .catch((err) => {
             return next({
@@ -104,7 +95,6 @@ individualController.deleteChore = (req, res, next) => {
                 message: { err: 'An err occurred' },
             });//end of error obj
         });//end of catch
-    
 };//end of deletechore
 
 module.exports = individualController;

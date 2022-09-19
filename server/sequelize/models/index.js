@@ -28,6 +28,7 @@ const user = sequelize.define('user', {
   },
   familyid: {
     type: DataTypes.INTEGER,
+    allowNull: true,
   },
   // user_chore_list_id: {
   //   type: DataTypes.BIGINT,
@@ -35,12 +36,12 @@ const user = sequelize.define('user', {
   // adminaccess: {
   //   type: DataTypes.BOOLEAN,
   // }
-},
-  // {
-  //   createdAt: false,
-  //   updatedAt: false,
-  // }
-)
+}, 
+  {
+    createdAt: false,
+    updatedAt: false,
+  }
+);
 
 //test user_chore_list model for user_chore_list table in taskful database
 // const user_chore_list = sequelize.define('user_chore_list', {
@@ -115,10 +116,10 @@ const chore = sequelize.define('chore', {
     type: DataTypes.INTEGER
   },
 },
-{
-createdAt: false,
-updatedAt: false,
-},
+// {
+// createdAt: false,
+// updatedAt: false,
+// },
 
 )
 
@@ -128,8 +129,6 @@ const User = sequelize.models.user;
 const Family = sequelize.models.family;
 // const Family_chore_list = sequelize.model.family_chore_list;
 const Chore = sequelize.models.chore;
-
-
 
 
 module.exports = { User, Family, Chore };

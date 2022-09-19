@@ -15,6 +15,4 @@ router.delete('/:id', familyController.deleteChore, (req, res) => {
     res.status(200).json([{"success": "success"}])
 });
 
-
-
 module.exports = router;
