@@ -26,7 +26,6 @@ individualController.getChores = (req, res, next) => {
         })//end of catch statement
     
 };//end of getchores
-
 //this controller adds the input chore data to the chores list database
 individualController.addChore = (req, res, next) => {
     // let currentDate = new Date();

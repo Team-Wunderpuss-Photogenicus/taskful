@@ -9,31 +9,38 @@ function ChoreContainer() {
     { chores: 'brian', points: 20, priority: 15 },
     { chores: 'louis', points: 20, priority: 15 },
   ]);
+
   const [chores, setChores] = useState('');
   const [points, setPoints] = useState(0);
   const [priority, setPriority] = useState(0);
 
   useEffect(() => {
-    fetch('/family')
+    fetch(`/family/?_id=${id}`)
       .then((data) => data.json())
       .then((response) => setData(response));
   }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // fetch(`/api`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type' : 'application/json'
-    //   },
-    //   body: JSON.stringify({_id:id}),
-    // })
-    //   .then((data) => data.json())
-    //   .catch((err) => console.log(err))
-      
     let newChore = e.target[0].value;
     let newPoints = e.target[1].value;
     let newPriority = e.target[2].value;
+
+    e.preventDefault();
+    fetch(`/family`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: id,
+        chore: newChore,
+        points: newPoints,
+        priority: newPriority,
+      }),
+    })
+      .then((data) => data.json())
+      .catch((err) => console.log(err));
+
     setData([
       ...data,
       { chores: newChore, points: newPoints, priority: newPriority },
@@ -45,27 +52,25 @@ function ChoreContainer() {
   // console.log(chores, points, priority);
   // console.log(data);
 
-  const handleDelete = (id) => {
+  const handleDelete = (e) => {
     e.preventDefault();
-    fetch(`/api?_id=${id}`, {
+    const choreName = e.target.value;
+    fetch(`/family`, {
       method: 'DELETE',
       headers: {
-        'Content-Type' : 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({_id: id}),
+      body: JSON.stringify({ id: id, name:choreName}),
     })
       .then((data) => data.json())
-      .catch((err) => console.log(err))
-    setData(data.filter((item) => item._id !== id))
-  }
-
-  
+      .catch((err) => console.log(err));
+    setData(data.filter((item) => item._id !== id));
+  };
 
   return (
     <>
-      
       <Leaderboard />
-            <Link to="/personal">
+      <Link to="/personal">
         <button>User Profile</button>
       </Link>
       <ChoreList
@@ -75,7 +80,6 @@ function ChoreContainer() {
         handleDelete={handleDelete}
         setData={setData}
       />
-
     </>
   );
 }
