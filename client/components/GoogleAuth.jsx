@@ -9,7 +9,14 @@ function GoogleAuth() {
   const onSuccess = (res) => {
     console.log('success:', res);
     //send res.Ca to server
-    
+    fetch('/user/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId: res.Ca,
+      }),
+    })
+      .then((res) => res.json())
   };
 
   const onFailure = (err) => {
