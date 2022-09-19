@@ -13,14 +13,24 @@ function ChoreContainer() {
   const [points, setPoints] = useState(0);
   const [priority, setPriority] = useState(0);
 
-  // useEffect(
-  //   fetch('/family')
-  //     .then((data) => data.json())
-  //     .then((response) => setData(response))
-  // );
+  useEffect(() => {
+    fetch('/family')
+      .then((data) => data.json())
+      .then((response) => setData(response));
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    fetch(`/api`, {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify({_id:id}),
+    })
+      .then((data) => data.json())
+      .catch((err) => console.log(err))
+      
     let newChore = e.target[0].value;
     let newPoints = e.target[1].value;
     let newPriority = e.target[2].value;
@@ -49,21 +59,23 @@ function ChoreContainer() {
     setData(data.filter((item) => item._id !== id))
   }
 
+  
+
   return (
     <>
+      
       <Leaderboard />
+            <Link to="/personal">
+        <button>User Profile</button>
+      </Link>
       <ChoreList
         data={data}
-        chores={chores}
         setChores={setChores}
         handleSubmit={handleSubmit}
         handleDelete={handleDelete}
-        points={points}
-        priority={priority}
+        setData={setData}
       />
-      <Link to="/personal">
-        <button>User Profile</button>
-      </Link>
+
     </>
   );
 }

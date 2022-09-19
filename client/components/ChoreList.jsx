@@ -4,32 +4,12 @@ import Chore from './Chore';
 //add fetch call functions into deconstructed object
 import {} from '../services/user';
 
-const ChoreList = ({
-  data,
-  chores,
-  points,
-  priority,
-  handleSubmit,
-  handleDelete,
-}) => {
+const ChoreList = ({ data, handleSubmit, handleDelete, setData }) => {
   const results = [];
-  // for (let i = 0; i < chores.length; i++) {
-  //   results.push(
-  //     <Chore
-  //       chores={chores[i]}
-  //       points={points[i]}
-  //       priority={priority[i]}
-  //       key={i}
-  //     />
-  //   );
-  // }
 
   return (
     <div className="ChoreList">
       <h2>Task List</h2>
-      {/* {results} */}
-
-      {/* maps out the data and generates a Chore component for each*/}
       <div>
         <h2> Add new task..</h2>
       </div>
@@ -65,6 +45,7 @@ const ChoreList = ({
           priority={task.priority} // {} priority: 15 }
           key={i}
           handleDelete={handleDelete}
+          setData={setData}
         />
       ))}
     </div>
