@@ -1,14 +1,14 @@
 import React, { Component, useEffect } from "react";
 import { GoogleLogin } from 'react-google-login';
-
+import { gapi } from 'gapi-script';
 
 function GoogleAuth() {
     const clientId = '1066770667864-ec7u92o89agqbfghb8qj69354a5o91vu.apps.googleusercontent.com';
 
-
     const onSuccess = (res) => {
         console.log('success:', res);
-        getToken(res.code);
+        //send res.Ca to server
+        
     };
 
     const onFailure = (err) => {
@@ -25,8 +25,6 @@ function GoogleAuth() {
         isSignedIn={true}
         prompt='consent'
         approvalPrompt='force'
-        responseType="code"
-        accessType="offline"
         scope="profile"
         />
     );
