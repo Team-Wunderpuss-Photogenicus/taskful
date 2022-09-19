@@ -42,7 +42,9 @@ familyController.addChore = (req, res, next) => {
         //find the individuals chores table based on req.body.id passed in 
         _id: req.body.id,
         //add an association for individualid and choreid from req.body.choreid
-        chore: req.body.chore,
+        name: req.body.name,
+        points: req.body.points,
+        priority: req.body.priority
 
     })//end of create sqlize
         

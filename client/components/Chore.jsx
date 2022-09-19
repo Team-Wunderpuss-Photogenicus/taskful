@@ -27,20 +27,20 @@ const Chore = ({ chores, points, priority, handleDelete, setData }) => {
       .then((data) => data.json())
       .catch((err) => console.log(err));
   };
-
+  // console.log(h2.Chore)
   return (
     <div>
       <div className="points-display">Points: {points}</div>
       <div className="points-display">Priority: {priority}</div>
-      <h2 className="Chore">
-        Chore: {chores}
-        <button className="update" onClick={handlePersonal}>
-          Update
-        </button>
-        <button className="delete" onClick={handleDelete}>
+      <h2 className="Chore" name="Chore" value={chores}>
+        {chores}
+        <button className="delete" value={chores} onClick={handleDelete}>
           <FaTimes color="red" />
         </button>
       </h2>
+      <button className="update" onClick={handlePersonal}>
+        Update
+      </button>
     </div>
   );
 };
