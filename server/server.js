@@ -1,8 +1,9 @@
 const path = require('path');
 const express = require('express');
-// const cookieParser = require('cookie-parser');
-// const familyRouter = require('./router/family');
+const cookieParser = require('cookie-parser');
+const familyRouter = require('./router/family');
 const individualRouter = require('./router/individual');
+const userRouter = require('./router/user');
 
 const app = express();
 const PORT = process.env.EXPRESS_PORT || 3000;
@@ -11,6 +12,7 @@ const PORT = process.env.EXPRESS_PORT || 3000;
  * handle parsing request body
  */
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 // app.use(cookieParser());
@@ -43,10 +45,13 @@ app.get('/', (req, res) => {
 // });
 
 //handle family calls
-// app.use('/family', familyRouter)
+app.use('/family', familyRouter)
 
 //handle user calls
 app.use('/individual', individualRouter)
+
+//handle user calls
+app.use('/user', userRouter)
 
 
 //default 404 handeler

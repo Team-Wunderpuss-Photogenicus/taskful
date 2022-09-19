@@ -40,7 +40,8 @@ const ChoreList = ({ data, handleSubmit, handleDelete, setData }) => {
       {data.map((task, i) => (
         <Chore
           data={task} //{ chores: 'louis', points: 20, priority: 15 }
-          chores={task.chores} //{ chores: 'louis' }
+          id = {task.id}
+          chores={task.chorename} //{ chores: 'louis' }
           points={task.points} //{  points: 20,  }
           priority={task.priority} // {} priority: 15 }
           key={i}

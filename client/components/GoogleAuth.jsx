@@ -1,8 +1,10 @@
 import React, { Component, useEffect } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
+import { useNavigate } from 'react-router-dom';
 
 function GoogleAuth() {
+  const Navigate = useNavigate();
   const clientId =
     '1066770667864-ec7u92o89agqbfghb8qj69354a5o91vu.apps.googleusercontent.com';
 
@@ -16,7 +18,11 @@ function GoogleAuth() {
         userId: res.Ca,
       }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        res.json()
+        const shouldRedirect = true;
+        if (shouldRedirect) Navigate('/tasks');
+      })
   };
 
   const onFailure = (err) => {

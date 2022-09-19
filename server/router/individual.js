@@ -5,17 +5,15 @@ const router = express.Router();
 
 router.get('/', individualController.getChores, (req, res) => {
     // console.log('histories', res.locals.histories)
-    res.status(200).send(res.locals.person)
+    res.status(200).send(res.locals.chores)
 });
 
-router.post('/:id', individualController.addChore, (req, res) => {
-    res.status(200).json([{"success": "success"}])
+router.patch('/:id', individualController.addChore, (req, res) => {
+    res.status(200).json(res.locals.chore)
 });
 
 router.delete('/:id', individualController.deleteChore, (req, res) => {
-    res.status(200).json([{"success": "success"}])
+    res.status(200).json(res.locals.chore)
 });
-
-
 
 module.exports = router;

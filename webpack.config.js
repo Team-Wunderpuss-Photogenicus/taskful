@@ -30,6 +30,19 @@ module.exports = {
         target: 'http://localhost:3000/',
         secure: false,
       },
+      '/family/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
+      '/individual/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
+      '/user/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
+
     },
   },
   module: {
