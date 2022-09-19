@@ -17,5 +17,4 @@ router.delete('/:id', choresController.deleteChore, (req, res) => {
 });
 
 
-
 module.exports = router;
