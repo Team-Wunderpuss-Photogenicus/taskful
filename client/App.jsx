@@ -5,13 +5,14 @@ import Register from './components/Register';
 import ChoreContainer from './components/ChoreContainer';
 import CoverPage from './components/CoverPage';
 import PersonalList from './components/PersonalList';
+import GoogleAuth from './components/GoogleAuth';
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<CoverPage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<GoogleAuth />} />
         <Route path="/register" element={<Register />} />
         <Route path="/tasks" element={<ChoreContainer />} />
         <Route path="/personal" element={<PersonalList />} />

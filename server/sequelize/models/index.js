@@ -21,25 +21,21 @@ async function initial() {
 initial();
 
 //test user model for user table in taskful database
-const users = sequelize.define('users', {
+const user = sequelize.define('user', {
   userid: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.BIGINT,
     allowNull: false,
     primaryKey: true,
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  familyid: {
-    type: DataTypes.NUMBER,
-  },
+  // familyid: {
+  //   type: DataTypes.INTEGER,
+  // },
   user_chore_list_id: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.BIGINT,
   },
-  adminaccess: {
-    type: DataTypes.BOOLEAN,
-  }
+  // adminaccess: {
+  //   type: DataTypes.BOOLEAN,
+  // }
 },
   {
     createdAt: false,
@@ -50,12 +46,12 @@ const users = sequelize.define('users', {
 //test user_chore_list model for user_chore_list table in taskful database
 const user_chore_list = sequelize.define('user_chore_list', {
   user_chore_list_id: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.BIGINT,
     allowNull: false,
     primaryKey: true,
   },
   choresid: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   }
 },
@@ -68,7 +64,7 @@ const user_chore_list = sequelize.define('user_chore_list', {
 //test family model for family table in taskful database
 const family = sequelize.define('family', {
   familyid: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
   },
@@ -77,7 +73,7 @@ const family = sequelize.define('family', {
     allowNull: false,
   },
   family_chore_list_id: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.BIGINT,
   }
 },
   {
@@ -89,12 +85,12 @@ const family = sequelize.define('family', {
 //test family_chore_list model for family_chore_list table in taskful database
 const family_chore_list = sequelize.define('family_chore_list', {
   family_chore_list_id: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.BIGINT,
     allowNull: false,
     primaryKey: true,
   },
   choresid: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   }
 },
@@ -105,9 +101,9 @@ const family_chore_list = sequelize.define('family_chore_list', {
 )
 
 //test chores model for chores table in taskful database
-const chores = sequelize.define('chores', {
-  choreid: {
-    type: DataTypes.NUMBER,
+const chore = sequelize.define('chore', {
+  choresid: {
+    type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
   },
@@ -116,11 +112,11 @@ const chores = sequelize.define('chores', {
     allowNull: false,
   },
   points: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   priority: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   }
 },
@@ -131,13 +127,13 @@ const chores = sequelize.define('chores', {
 )
 
 //creating property name for model to export
-const Users = sequelize.models.users;
+const User = sequelize.models.users;
 const User_chore_list = sequelize.model.user_chore_list;
 const Family = sequelize.model.family;
 const Family_chore_list = sequelize.model.family_chore_list;
-const Chores = sequelize.model.chores;
+const Chore = sequelize.model.chores;
 
 // Person.findAll({})
 // .then((data)=> console.log(data))
 
-module.exports = { Users, User_chore_list, Family, Family_chore_list, Chores };
+module.exports = { User, User_chore_list, Family, Family_chore_list, Chore };
