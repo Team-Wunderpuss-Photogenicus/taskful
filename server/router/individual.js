@@ -8,7 +8,8 @@ router.get('/', individualController.getChores, (req, res) => {
     res.status(200).send(res.locals.person)
 });
 
-router.post('/:id', individualController.addChore, (req, res) => {
+router.post('/', individualController.addChore, (req, res) => {
+    
     res.status(200).json([{"success": "success"}])
 });
 

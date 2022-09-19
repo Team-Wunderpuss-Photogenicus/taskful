@@ -3,7 +3,7 @@ const familyController = require('../controllers/familyController');
 
 const router = express.Router();
 
-router.get('/:id', familyController.getChores, (req, res) => {
+router.get('/:id', familyController.getChore, (req, res) => {
     res.status(200).json(res.locals.histories)
 });
 

@@ -3,61 +3,73 @@ const models = require('../sequelize/models/index');
 const individualController = {};
 
 //this controller gets all the individual history
-individualController.getChores = (req, res, next) => {
+individualController.getChores = async(req, res, next) => {
 
     //actual sequelize query to get all chores from personal chores list in db based on user id passed in
-    models.Chore.findAll({where: {_id: req.query.id}})
-        
-        //async grabbing chores response from db
-        .then((chores) => {
-            //store individuals chores into local to persist
-            res.locals.chores = chores.dataValues;
-            //invoke next middleware
-            return next();
-        })//end of then chain
+    try {
 
-        //catch statement for error response
-        .catch((err) => {
-                //return err object 
-                return next({
-                    log: 'Middleware error. individualController getchores',
-                    message: { err: 'An err occurred' },
-                });//end of error obj
+        dbRes = await models.Chore.findAll({ where: { _id: req.query.id } })
+        
+            //async grabbing chores response from db
+            .then((chores) => {
+                //store individuals chores into local to persist
+                res.locals.chores = chores.dataValues;
+                //invoke next middleware
+                return next();
+            })//end of then chain
+    }
+
+    //catch statement for error response
+    catch (err) {
+        ((err) => {
+            //return err object 
+            return next({
+                log: 'Middleware error. individualController getchores',
+                message: { err: 'An err occurred' },
+            });//end of error obj
         })//end of catch statement
-    
+    }
 };//end of getchores
 
 //this controller adds the input chore data to the chores list database
-individualController.addChore = (req, res, next) => {
+individualController.addChore = async (req, res, next) => {
     // let currentDate = new Date();
     // let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
     // let cDay = currentDate.getDate();
     // let cMonth = currentDate.getMonth() + 1;
     // let cYear = currentDate.getFullYear();
     // const current = cDay + "/" + cMonth + "/" + cYear + ' ' + time;
-
-    //sqlize method to create an entry in personal chores list of db
-    models.Chore.create({
-
-        //find the individuals chores table based on req.body.id passed in 
-        choresid: req.body.id,
-        //add an association for individualid and choreid from req.body.choreid
-        chorename: req.body.name,
-
-    })//end of create sqlize
+    //sqlize method to create an entry in personal chores list of db\
+    try {
         
-        //handle success response after create method
-        .then((response) => {
-            return next();
-        })//end of then dealing with response
-
+        const dbRes = await models.Chore.create({
+            
+            //find the individuals chores table based on req.body.id passed in 
+            // id: 12345,
+            //add an association for individualid and choreid from req.body.choreid
+            chorename: 'laundry',
+            
+            points: 12,
+            
+            priority: 2,
+            
+            userid: 123456789,
+            
+            familyid: 1234567910,
+            
+        })//end of create sqlize
+   
+        console.log(dbRes);
+        return next();
+    }
+    catch (err) {
         //handle error response from create
-        .catch((err) => {
-            return next({
-                log: 'Middleware error. individualController addchore',
-                message: { err: 'An err occurred' },
-            });
-        })//end of catch for errors
+        return next({
+            log: 'Middleware error. individualController addchore',
+            message: { err: 'An err occurred' },
+        });
+//end of catch for errors
+    }
     
 }//end of addchore
 

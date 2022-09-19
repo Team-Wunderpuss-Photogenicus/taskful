@@ -3,15 +3,15 @@ const models = require('../sequelize/models/index');
 const familyController = {};
 
 //this controller gets all the individual history
-familyController.getChores = (req, res, next) => {
+familyController.getChore = (req, res, next) => {
 
     //actual sequelize query to get all chores from personal chores list in db based on user id passed in
-    models.Chores.findAll({where: {_id: req.query.id}})
+    models.Chore.findAll({where: {_id: req.query.id}})
         
         //async grabbing chores response from db
-        .then((chores) => {
+        .then((chore) => {
             //store individuals chores into local to persist
-            res.locals.chores = chores.dataValues;
+            res.locals.chore = chore.dataValues;
             //invoke next middleware
             return next();
         })//end of then chain
@@ -37,12 +37,20 @@ familyController.addChore = (req, res, next) => {
     // const current = cDay + "/" + cMonth + "/" + cYear + ' ' + time;
 
     //sqlize method to create an entry in personal chores list of db
-    models.Chores.create({
+    models.Chore.create({
 
-        //find the individuals chores table based on req.body.id passed in 
-        _id: req.body.id,
+         //find the individuals chores table based on req.body.id passed in 
+        // choresid: 12345,
         //add an association for individualid and choreid from req.body.choreid
-        chore: req.body.chore,
+        chorename: 'laundry',
+
+        points: 12,
+
+        priority: 2,
+
+        userid: 123456789,
+
+        familyid: 1234567910,
 
     })//end of create sqlize
         
@@ -65,7 +73,7 @@ familyController.addChore = (req, res, next) => {
 familyController.deleteChore = (req, res, next) => {
 
     //sqlize query deleting doc by user id and chore id
-    models.Chores.destroy({
+    models.Chore.destroy({
 
         where: {
             _id: req.body.id,

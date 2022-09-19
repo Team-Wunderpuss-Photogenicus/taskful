@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 // const cookieParser = require('cookie-parser');
-// const familyRouter = require('./router/family');
+const familyRouter = require('./router/family');
 const individualRouter = require('./router/individual');
 
 const app = express();
@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 // });
 
 //handle family calls
-// app.use('/family', familyRouter)
+app.use('/family', familyRouter)
 
 //handle user calls
 app.use('/individual', individualRouter)

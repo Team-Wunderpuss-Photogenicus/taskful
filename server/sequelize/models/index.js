@@ -2,7 +2,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 //initializing sequelize and postgres connection to db
-const sequelize = new Sequelize('postgres://gbufjhvv:StVQaAvuDFTjVN2IsIeoY5H9oS_2CtbF@jelani.db.elephantsql.com/gbufjhvv');
+const sequelize = new Sequelize('postgres://fcyszrjv:fCW3D8cnjbTGKLBeRwgLxHHjMz1FBA1m@jelani.db.elephantsql.com/fcyszrjv');
 
 //test function to connect to db
 async function initial() {
@@ -22,118 +22,114 @@ initial();
 
 //test user model for user table in taskful database
 const user = sequelize.define('user', {
-  userid: {
+  googleid: {
     type: DataTypes.BIGINT,
     allowNull: false,
-    primaryKey: true,
   },
-  // familyid: {
-  //   type: DataTypes.INTEGER,
+  familyid: {
+    type: DataTypes.INTEGER,
+  },
+  // user_chore_list_id: {
+  //   type: DataTypes.BIGINT,
   // },
-  user_chore_list_id: {
-    type: DataTypes.BIGINT,
-  },
   // adminaccess: {
   //   type: DataTypes.BOOLEAN,
   // }
 },
-  {
-    createdAt: false,
-    updatedAt: false,
-  }
+  // {
+  //   createdAt: false,
+  //   updatedAt: false,
+  // }
 )
 
 //test user_chore_list model for user_chore_list table in taskful database
-const user_chore_list = sequelize.define('user_chore_list', {
-  user_chore_list_id: {
-    type: DataTypes.BIGINT,
-    allowNull: false,
-    primaryKey: true,
-  },
-  choresid: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  }
-},
-  {
-    createdAt: false,
-    updatedAt: false,
-  }
-)
+// const user_chore_list = sequelize.define('user_chore_list', {
+//   user_chore_list_id: {
+//     type: DataTypes.BIGINT,
+//     allowNull: false,
+//     primaryKey: true,
+//   },
+//   choresid: {
+//     type: DataTypes.INTEGER,
+//     allowNull: false,
+//   }
+// },
+//   {
+//     createdAt: false,
+//     updatedAt: false,
+//   }
+// )
 
 //test family model for family table in taskful database
 const family = sequelize.define('family', {
   familyid: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-  },
-  name: {
-    type: DataTypes.STRING,
+    type: DataTypes.NUMBER,
     allowNull: false,
   },
-  family_chore_list_id: {
-    type: DataTypes.BIGINT,
-  }
+  // family_chore_list_id: {
+  //   type: DataTypes.BIGINT,
+  // }
 },
-  {
-    createdAt: false,
-    updatedAt: false,
-  }
+  // {
+  //   createdAt: false,
+  //   updatedAt: false,
+  // }
 )
 
 //test family_chore_list model for family_chore_list table in taskful database
-const family_chore_list = sequelize.define('family_chore_list', {
-  family_chore_list_id: {
-    type: DataTypes.BIGINT,
-    allowNull: false,
-    primaryKey: true,
-  },
-  choresid: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  }
-},
-  {
-    createdAt: false,
-    updatedAt: false,
-  }
-)
+// const family_chore_list = sequelize.define('family_chore_list', {
+//   family_chore_list_id: {
+//     type: DataTypes.BIGINT,
+//     allowNull: false,
+//     primaryKey: true,
+//   },
+//   choresid: {
+//     type: DataTypes.INTEGER,
+//     allowNull: false,
+//   }
+// },
+//   {
+//     createdAt: false,
+//     updatedAt: false,
+//   }
+// )
 
 //test chores model for chores table in taskful database
 const chore = sequelize.define('chore', {
-  choresid: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-  },
-  choresname: {
+  chorename: {
     type: DataTypes.STRING,
-    allowNull: false,
+    // allowNull: false,
   },
   points: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    // allowNull: false,
   },
   priority: {
     type: DataTypes.INTEGER,
-    allowNull: false,
-  }
+    // allowNull: false,
+  },
+  userid: {
+    type: DataTypes.BIGINT
+  },
+  familyid: {
+    type: DataTypes.INTEGER
+  },
 },
-  {
-    createdAt: false,
-    updatedAt: false,
-  }
+{
+createdAt: false,
+updatedAt: false,
+},
+
 )
 
 //creating property name for model to export
-const User = sequelize.models.users;
-const User_chore_list = sequelize.model.user_chore_list;
-const Family = sequelize.model.family;
-const Family_chore_list = sequelize.model.family_chore_list;
-const Chore = sequelize.model.chores;
+const User = sequelize.models.user;
+// const User_chore_list = sequelize.model.user_chore_list;
+const Family = sequelize.models.family;
+// const Family_chore_list = sequelize.model.family_chore_list;
+const Chore = sequelize.models.chore;
 
-// Person.findAll({})
-// .then((data)=> console.log(data))
 
-module.exports = { User, User_chore_list, Family, Family_chore_list, Chore };
+
+
+module.exports = { User, Family, Chore };
