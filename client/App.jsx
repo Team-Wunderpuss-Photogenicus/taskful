@@ -12,7 +12,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<CoverPage />} />
-        <Route path="/login" element={<GoogleAuth />} />
+        <Route path="/googleauth" element={<GoogleAuth />} />
         <Route path="/register" element={<Register />} />
         <Route path="/tasks" element={<ChoreContainer />} />
         <Route path="/personal" element={<PersonalList />} />
