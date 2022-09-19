@@ -13,7 +13,7 @@ function CoverPage() {
   return (
     <div className="CoverPage">
       <img src={taskful} />
-      <Link to="/login">
+      <Link to="/GoogleAuth">
         <button className="getStarted">Get Started!</button>
       </Link>
     </div>
