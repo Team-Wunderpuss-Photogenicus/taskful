@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaTimes } from 'react-icons/fa';
+import { FaCalendarCheck } from 'react-icons/fa';
 
 //add fetch call functions into deconstructed object
 import {} from '../services/user';
@@ -30,12 +30,16 @@ const Chore = ({ id, chores, points, priority, handleDelete, setData }) => {
   // console.log(h2.Chore)
   return (
     <div>
-      <div className="points-display">Points: {points}</div>
-      <div className="points-display">Priority: {priority}</div>
+
+
       <h2 className="Chore" name="Chore" value={chores}>
         {chores}
+        <div className="points-display">
+          <div className="points-display">Points: {points}</div>
+          <div className="points-display">Priority: {priority}</div>
+        </div>
         <button className="delete" value={id} onClick={()=>handleDelete(id)}>
-          <FaTimes color="red" />
+          <FaCalendarCheck color="green" />
         </button>
       </h2>
       </div> 

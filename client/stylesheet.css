@@ -22,14 +22,14 @@ header {
       margin-bottom: 30px;
 }
 
-button {
+/* button {
       border: 0;
       border-radius: 8px;
       color: #78A4E3;
       width: 100px;
       height: 30px;
       cursor: pointer;
-}
+} */
 
 h1 {
   color:rgba(0, 0, 0, 0.75)
@@ -71,9 +71,10 @@ h2 {
 }
 
 .points-display {
+      font-size: 13px;
       top: -10px;
       left: -10px;
-      color: #fff;
+      color: #13315C;
 }
 
 .CoverPage {

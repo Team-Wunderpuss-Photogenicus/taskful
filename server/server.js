@@ -34,16 +34,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/', 'index.html'));
 })
 
-//redirects to family chore page after successful login
-// app.post('/login', userController, (req, res) => {
-//     res.status(200).redirect('http://localhost:8080/family')
-// });
-
-//redirects to login page after successful signup
-// app.post('/signup', userController, (req, res) => {
-//     res.status.redirect('http://localhost:8080')
-// });
-
 //handle family calls
 app.use('/family', familyRouter)
 
